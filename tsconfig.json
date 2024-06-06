@@ -1,0 +1,17 @@
+//  https://stackoverflow.com/questions/67371787/what-typescript-configuration-produces-output-closest-to-node-js-16-capabilities/67371788#67371788
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "lib": ["ES2022", "dom"],
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["test"]
+}

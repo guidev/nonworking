@@ -1,0 +1,31 @@
+{
+	"name": "my-project",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"clean": "rimraf dist",
+		"build": "tsc --build",
+		"dev": "nodemon --no-warnings=ExperimentalWarning --exec node --loader ts-node/esm src/app.ts",
+		"start": "node --loader dd-trace/loader-hook.mjs dist/app.js",
+		"test": "jest"
+	},
+	"engines": {
+		"node": ">=18.16.0"
+	},
+	"type": "module",
+	"module": "es2022",
+	"target": "es2022",
+	"private": true,
+	"license": "UNLICENSED",
+	"dependencies": {
+		"dd-trace": "^5.15.0",
+		"express": "^4.19.2",
+		"langchain": "0.2.4"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.21",
+		"ts-jest": "^29.1.4",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.4.5"
+	}
+}
