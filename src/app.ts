@@ -12,7 +12,7 @@ const app = express();
 
 const prompt = PromptTemplate.fromTemplate(`Return a JSON object with a 'text' field containing a joke`);
 
-const llm = new ChatOpenAI({modelName: "gpt-4o", verbose: true})
+const llm = new ChatOpenAI({modelName: "gpt-4o", verbose: true, apiKey: "doesntmatter"})
     .bind({
         response_format: {
             type: "json_object",
