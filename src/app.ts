@@ -1,18 +1,28 @@
 import './config/datadog.js';
-import express, {NextFunction, Request, Response} from 'express';
-import {RecursiveCharacterTextSplitter} from "langchain/text_splitter";
+import express from 'express';
+import {ChatOpenAI} from "@langchain/openai";
+import {PromptTemplate} from "@langchain/core/prompts";
+import {JsonOutputParser} from "@langchain/core/output_parsers";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 
 const app = express();
 
-app.get('/health', async (req, res, next) => {
-    const textSplitter = new RecursiveCharacterTextSplitter({chunkSize: 7000, chunkOverlap: 2000});
-    console.log(textSplitter);
-    res.end();
-});
+const prompt = PromptTemplate.fromTemplate(`Return a JSON object with a 'text' field containing a joke`);
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).end();
-})
+const llm = new ChatOpenAI({modelName: "gpt-4o", verbose: true})
+    .bind({
+        response_format: {
+            type: "json_object",
+        },
+    });
+
+const parser = new JsonOutputParser();
+
+const chain = prompt.pipe(llm).pipe(parser);
+
+console.log(await chain.invoke({}));
 
 app.listen(process.env.PORT || 3000);
