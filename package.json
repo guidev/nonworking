@@ -20,7 +20,7 @@
 	"dependencies": {
 		"dd-trace": "^5.17.0",
 		"express": "^4.19.2",
-		"langchain": "0.2.5"
+		"langchain": "0.2.19"
 	},
 	"devDependencies": {
 		"@types/express": "^4.17.21",
